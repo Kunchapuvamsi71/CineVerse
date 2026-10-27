@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CineVerse — discover movies from every corner of the world, across languages and genres.">
+  <meta name="theme-color" content="#101014">
+  <title>CineVerse — One World. Every Movie. Every Language.</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CineVerse home"><span class="brand-mark">C</span><span>Cine<span>Verse</span></span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <button class="nav-link active" data-view="home">Home</button>
+      <button class="nav-link" data-view="all">All Movies</button>
+      <button class="nav-link" data-view="trending">Trending</button>
+      <button class="nav-link" data-view="popular">Popular</button>
+      <button class="nav-link" data-view="favorites">Favorites <span id="favorite-count" class="nav-count">0</span></button>
+      <button class="nav-link" data-view="watchlist">Watchlist <span id="watchlist-count" class="nav-count">0</span></button>
+    </nav>
+    <button class="mobile-menu" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-backdrop" id="hero-backdrop"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span class="live-dot"></span> YOUR WORLD OF CINEMA</p>
+        <h1>One world.<br><span>Every story.</span></h1>
+        <p class="hero-copy">From regional gems to global blockbusters, discover your next favourite movie in every language.</p>
+        <div class="hero-actions">
+          <button class="button button-primary" id="explore-button">Explore movies <span aria-hidden="true">↗</span></button>
+          <button class="button button-ghost" id="hero-trending">Explore trending</button>
+        </div>
+        <p class="hero-note">Discover • Save • Watch later</p>
+      </div>
+      <div class="hero-decoration" aria-hidden="true"><span>CV</span></div>
+    </section>
+
+    <section class="quick-languages section-wrap" aria-labelledby="language-shortcuts-title">
+      <div class="section-heading compact-heading">
+        <div><p class="eyebrow">FIND YOUR LANGUAGE</p><h2 id="language-shortcuts-title">Cinema without borders</h2></div>
+      </div>
+      <div class="language-chips" id="language-chips">
+        <button class="language-chip selected" data-language="">🌍 All languages</button>
+        <button class="language-chip" data-language="te">తెలుగు Telugu</button>
+        <button class="language-chip" data-language="ta">தமிழ் Tamil</button>
+        <button class="language-chip" data-language="hi">हिन्दी Hindi</button>
+        <button class="language-chip" data-language="ml">മലയാളം Malayalam</button>
+        <button class="language-chip" data-language="kn">ಕನ್ನಡ Kannada</button>
+        <button class="language-chip" data-language="en">English</button>
+        <button class="language-chip" data-language="ko">한국어 Korean</button>
+        <button class="language-chip" data-language="ja">日本語 Japanese</button>
+        <button class="language-chip" data-language="zh">中文 Chinese</button>
+      </div>
+    </section>
+
+    <section class="discovery section-wrap" id="discovery">
+      <div class="section-heading">
+        <div><p class="eyebrow">YOUR NEXT MOVIE IS HERE</p><h2 id="page-title">Explore movies</h2><p class="section-subtitle" id="page-subtitle">A universe of stories, one movie at a time.</p></div>
+        <div class="mode-toggle" aria-label="Data source"><span class="mode-dot"></span><span id="mode-label">Demo mode</span></div>
+      </div>
+
+      <div class="filter-panel">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Search movie titles..." autocomplete="off"><button id="clear-search" aria-label="Clear search" hidden>×</button></label>
+        <label class="filter-control"><span>Language</span><select id="language-filter"><option value="">All languages</option></select></label>
+        <label class="filter-control"><span>Genre</span><select id="genre-filter"><option value="">All genres</option></select></label>
+        <label class="filter-control"><span>Year</span><select id="year-filter"><option value="">Any year</option></select></label>
+        <label class="filter-control"><span>Rating</span><select id="rating-filter"><option value="0">Any rating</option><option value="5">5+ rating</option><option value="6">6+ rating</option><option value="7">7+ rating</option><option value="8">8+ rating</option></select></label>
+        <label class="filter-control"><span>Sort by</span><select id="sort-filter"><option value="popularity">Popularity</option><option value="rating">Rating</option><option value="release">Release date</option><option value="title">Title A–Z</option></select></label>
+        <button class="button button-outline reset-button" id="reset-filters">Reset</button>
+      </div>
+
+      <div class="results-bar"><p id="results-summary">Loading movies…</p><button id="load-more-top" class="text-button" hidden>Load more ↓</button></div>
+      <div id="status-message" class="status-message" role="status" aria-live="polite">Loading the movie universe…</div>
+      <div class="movie-grid" id="movie-grid" aria-live="polite"></div>
+      <div class="load-more-wrap"><button class="button button-outline" id="load-more" hidden>Load more movies <span aria-hidden="true">↓</span></button></div>
+    </section>
+
+    <section class="feature-strip section-wrap">
+      <div class="feature-card"><span class="feature-icon">◎</span><div><h3>Stories in every language</h3><p>Explore cinema from across the globe with original-language filters.</p></div></div>
+      <div class="feature-card"><span class="feature-icon">♡</span><div><h3>Your personal collection</h3><p>Keep your favourites and watch-later picks saved on this device.</p></div></div>
+      <div class="feature-card"><span class="feature-icon">✦</span><div><h3>Discover something new</h3><p>Search by genre, year, rating, and title to find your next watch.</p></div></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand footer-brand" href="#"><span class="brand-mark">C</span><span>Cine<span>Verse</span></span></a>
+    <p>Made for movie lovers, everywhere.</p>
+    <p class="tmdb-credit">Movie data and images may be provided by TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+    <p class="footer-small">CineVerse is a movie discovery project. It does not host or stream movies.</p>
+  </footer>
+
+  <div class="modal-backdrop" id="movie-modal" hidden>
+    <section class="movie-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Close movie details">×</button>
+      <div class="modal-art" id="modal-art"></div>
+      <div class="modal-body">
+        <p class="eyebrow" id="modal-kicker">MOVIE DETAILS</p>
+        <h2 id="modal-title">Movie title</h2>
+        <div class="modal-meta" id="modal-meta"></div>
+        <p class="modal-overview" id="modal-overview"></p>
+        <div class="modal-tags" id="modal-tags"></div>
+        <div class="modal-actions"><button class="button button-primary" id="modal-favorite">♡ Add to favorites</button><button class="button button-outline" id="modal-watchlist">＋ Add to watchlist</button></div>
+        <p class="modal-source" id="modal-source"></p>
+      </div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
